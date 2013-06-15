@@ -1,0 +1,5 @@
+<resources>
+	
+    <string name="info_network_not_connected">The network is not connected!</string>
+
+</resources>

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Application;
+import android.content.res.Configuration;
 
 import com.cst.stormdroid.image.ImageCache;
 import com.cst.stormdroid.net.SDThreadPool;
@@ -19,42 +20,34 @@ public class SDApplication extends Application{
 	/**
 	 * Image cache
 	 */
-	private ImageCache imageCache;
+	private ImageCache mImageCache;
 	/**
 	 * Thread pool
 	 */
-	private SDThreadPool threadPool;
+	private SDThreadPool mThreadPool;
 	/**
 	 * on low memory listeners, use weak reference to refer all unnecessary listeners 
 	 */
-	private List<WeakReference<OnLowMemoryListener>> onLowMemoryListeners;
+	private List<WeakReference<OnLowMemoryListener>> mOnLowMemoryListeners;
 	
 	/**
 	 * singleton
 	 */
-	public static SDApplication instance;
+	private static SDApplication mInstance;
 	
 	
 	public static SDApplication getInstance(){
-		return instance;
+		return mInstance;
 	}
 	
 	public SDApplication(){
-		instance = this;
-		onLowMemoryListeners = new ArrayList<WeakReference<OnLowMemoryListener>>();
+		mInstance = this;
+		mOnLowMemoryListeners = new ArrayList<WeakReference<OnLowMemoryListener>>();
 	}
-	
-	/**
-	 * run a task on background
-	 * @param runnale
-	 */
-	public void submit(Runnable runnable){
-		threadPool.submit(runnable);
-	}
-	
+		
 	public void registerOnLowMemoryListener(OnLowMemoryListener listener){
 		if(listener != null){
-			onLowMemoryListeners.add(new WeakReference<OnLowMemoryListener>(listener));
+			mOnLowMemoryListeners.add(new WeakReference<OnLowMemoryListener>(listener));
 		}
 	}
 	
@@ -62,15 +55,27 @@ public class SDApplication extends Application{
 	public void onLowMemory() {
 		super.onLowMemory();
 		int i = 0;
-        while (i < onLowMemoryListeners.size()) {
-            final OnLowMemoryListener listener = onLowMemoryListeners.get(i).get();
+        while (i < mOnLowMemoryListeners.size()) {
+            final OnLowMemoryListener listener = mOnLowMemoryListeners.get(i).get();
             if (listener == null) {
-            	onLowMemoryListeners.remove(i);
+            	mOnLowMemoryListeners.remove(i);
             } else {
                 listener.onLowMemory();
                 i++;
             }
         }
+	}
+	
+	/*
+	 * must up api_level 14
+	@Override
+	public void onTrimMemory(int level) {
+		super.onTrimMemory(level);
+	}*/
+	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
 	}
 	
 	//----------------------------getter and setter------------------------------
@@ -79,19 +84,19 @@ public class SDApplication extends Application{
 	 * @return
 	 */
 	public synchronized SDThreadPool getThreadPool(){
-		if(threadPool == null){
-			threadPool = new SDThreadPool();
+		if(mThreadPool == null){
+			mThreadPool = new SDThreadPool();
 		}
-		return threadPool;
+		return mThreadPool;
 	}
 	
 	/**
 	 * get Image Cache
 	 */
 	public synchronized ImageCache getImageCache(){
-		if(imageCache == null){
-			imageCache = new ImageCache(this);
+		if(mImageCache == null){
+			mImageCache = new ImageCache(this);
 		}
-		return imageCache;
+		return mImageCache;
 	}
 }

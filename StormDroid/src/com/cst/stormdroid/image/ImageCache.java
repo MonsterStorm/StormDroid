@@ -16,16 +16,16 @@ public class ImageCache implements BaseImageCacheInterface, OnLowMemoryListener 
 	/**
 	 * memory cache
 	 */
-	private ImageMemoryCache memoryCache;
+	private ImageMemoryCache mMemoryCache;
 	/**
 	 * file cache
 	 */
-	private ImageFileCache fileCache;
+	private ImageFileCache mFileCache;
 	
 	
 	public ImageCache(Context context){
-		memoryCache = new ImageMemoryCache(context);
-		fileCache = new ImageFileCache(context);
+		mMemoryCache = new ImageMemoryCache(context);
+		mFileCache = new ImageFileCache(context);
 	}
 
 	/**
@@ -38,27 +38,27 @@ public class ImageCache implements BaseImageCacheInterface, OnLowMemoryListener 
 	@Override
 	public Bitmap getImageByUrl(final String url) {
 		Bitmap bmp = null;
-		if(StringUtil.isStrongValid(url)){//is valid url
-			if(memoryCache != null)
-				bmp = memoryCache.getImageByUrl(url);
+		if(StringUtil.isValid(url)){//is valid url
+			if(mMemoryCache != null)
+				bmp = mMemoryCache.getImageByUrl(url);
 			
 			if(bmp == null){//not in memory
-				if(fileCache != null)
-					bmp = fileCache.getImageByUrl(url);
+				if(mFileCache != null)
+					bmp = mFileCache.getImageByUrl(url);
 				
 				if(bmp != null){
-					memoryCache.pushToCache(url, bmp);
+					mMemoryCache.pushToCache(url, bmp);
 				}
 				/*if(bmp == null){//not in memory and not in filesystem, then get from network
 					bmp = getImageFromNetwork(url);
 					if(bmp != null){
-						if(memoryCache != null)
-							memoryCache.pushToCache(url, bmp);
-						if(fileCache != null)
-							fileCache.pushToCache(url, bmp);
+						if(mMemoryCache != null)
+							mMemoryCache.pushToCache(url, bmp);
+						if(mFileCache != null)
+							mFileCache.pushToCache(url, bmp);
 					}
 				} else {
-					memoryCache.pushToCache(url, bmp);
+					mMemoryCache.pushToCache(url, bmp);
 				}*/
 			}
 		}
@@ -71,18 +71,18 @@ public class ImageCache implements BaseImageCacheInterface, OnLowMemoryListener 
 	@Override
 	public void pushToCache(final String url, final Bitmap bmp) {
 		if(StringUtil.isValid(url) && bmp != null){
-			if(memoryCache != null && memoryCache.getImageByUrl(url) == null){
-				memoryCache.pushToCache(url, bmp);
+			if(mMemoryCache != null && mMemoryCache.getImageByUrl(url) == null){
+				mMemoryCache.pushToCache(url, bmp);
 			}
-			if(fileCache != null && fileCache.getImageByUrl(url) == null){
-				fileCache.pushToCache(url, bmp);
+			if(mFileCache != null && mFileCache.getImageByUrl(url) == null){
+				mFileCache.pushToCache(url, bmp);
 			}
 		}
 	}
 	
 	@Override
 	public void onLowMemory() {
-		memoryCache.onLowMemory();
-		fileCache.onLowMemory();
+		mMemoryCache.onLowMemory();
+		mFileCache.onLowMemory();
 	}
 }

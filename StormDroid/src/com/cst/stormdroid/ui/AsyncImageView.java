@@ -25,6 +25,7 @@ import com.cst.stormdroid.utils.string.StringUtil;
  * @version 1.0
  */
 public class AsyncImageView extends ImageView implements ImageRequestCallback {
+	// log tag
 	private static final String LOG_TAG = AsyncImageView.class.getSimpleName();
 
 	/**

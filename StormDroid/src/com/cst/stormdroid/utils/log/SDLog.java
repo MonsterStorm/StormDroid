@@ -10,24 +10,30 @@ import android.util.Log;
 public class SDLog {
 	private SDLog(){}
 	/**
-	 * different logs level
+	 * different logs level, order by none, debug, info, warning and error
 	 */
 	public static enum SDLogLevel{
-		SD_LOG_LEVEL_INFO, 
-		SD_LOG_LEVEL_WARNING, 
-		SD_LOG_LEVEL_ERROR, 
-		SD_LOG_LEVEL_NONE
+		SD_LOG_LEVEL_NONE,
+		SD_LOG_LEVEL_DEBUG,
+		SD_LOG_LEVEL_INFO,
+		SD_LOG_LEVEL_WARNING,
+		SD_LOG_LEVEL_ERROR
 	};
     
     /**
      * current logs level, set to SD_LOG_LEVEL_NONE when application is release
      */
-    private static final SDLogLevel SD_LOG_LEVEL = SDLogLevel.SD_LOG_LEVEL_NONE;
+    public static final SDLogLevel SD_LOG_LEVEL = SDLogLevel.SD_LOG_LEVEL_NONE;
+    
+    /**
+     * is debug logs enabled
+     */
+    public static final boolean SD_DEBUG_LOGS_ENABLED = (SD_LOG_LEVEL == SDLogLevel.SD_LOG_LEVEL_DEBUG);
     
     /**
      * is info logs enabled
      */
-    public static final boolean SD_INFO_LOGS_ENABLED = (SD_LOG_LEVEL == SDLogLevel.SD_LOG_LEVEL_INFO);
+    public static final boolean SD_INFO_LOGS_ENABLED = SD_DEBUG_LOGS_ENABLED || (SD_LOG_LEVEL == SDLogLevel.SD_LOG_LEVEL_INFO);
     
     /**
      * is warning logs enabled
@@ -58,6 +64,17 @@ public class SDLog {
 	public static void w(final String tag, final String msg){
 		if(SD_WARNING_LOGS_ENABLED){
 			Log.w(tag, msg);
+		}
+	}
+	
+	/**
+	 * log debug
+	 * @param tag
+	 * @param msg
+	 */
+	public static void d(final String tag, final String msg){
+		if(SD_DEBUG_LOGS_ENABLED){
+			Log.d(tag, msg);
 		}
 	}
 	

@@ -12,7 +12,7 @@ public class StringUtil {
 	 * @param str
 	 * @return
 	 */
-	public static boolean isValid(final String str){
+	public static boolean isEmpty(final CharSequence str){
 		return str != null && !str.equals("");
 	}
 	
@@ -21,7 +21,7 @@ public class StringUtil {
 	 * @param str
 	 * @return
 	 */
-	public static boolean isStrongValid(final String str){
+	public static boolean isValid(final String str){
 		return str != null && !str.equals("") && !str.equalsIgnoreCase("null");  
 	}
 }
