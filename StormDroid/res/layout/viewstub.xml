@@ -16,7 +16,7 @@
 	
 	 -->
     <ViewStub android:id="@+id/stub"
-        android:layout="@layout/xxx"
+        android:layout="@layout/viewstub_child"
         android:inflatedId="@+id/panel"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"/>

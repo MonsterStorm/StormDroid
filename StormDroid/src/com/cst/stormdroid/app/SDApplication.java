@@ -9,6 +9,9 @@ import android.content.res.Configuration;
 
 import com.cst.stormdroid.image.ImageCache;
 import com.cst.stormdroid.net.SDThreadPool;
+import com.cst.stormdroid.utils.Config;
+import com.cst.stormdroid.utils.CrashHandler;
+import com.cst.stormdroid.utils.Globals;
 
 /**
  * Main Application, used in AndroidManifest.xml
@@ -76,6 +79,27 @@ public class SDApplication extends Application{
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
+	}
+	//--------------------------life cycle functions-----------------------------
+	@Override
+	public void onCreate() {
+		super.onCreate();
+		
+		//init crash handler
+		if(Config.mHandleCrash){
+			CrashHandler.getInstance().init(this);
+		}
+		
+		//init globals
+		Globals.init(this);
+		
+	}
+	
+	/**
+	 * exit app
+	 */
+	public void exitApp(){
+		
 	}
 	
 	//----------------------------getter and setter------------------------------

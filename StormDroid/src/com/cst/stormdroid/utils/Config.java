@@ -16,6 +16,11 @@ public class Config {
 	 */
 	public static final boolean mDebug;
 	
+	/**
+	 * whether handler crash by CrashHandler
+	 */
+	public static final boolean mHandleCrash = false;
+	
 	static {
 		mDebug = SDLog.SD_LOG_LEVEL == SDLogLevel.SD_LOG_LEVEL_DEBUG;
 	}

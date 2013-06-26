@@ -1,0 +1,5 @@
+<!-- tip strings for @Link Activity.handleMessage(Message msg) -->
+<resources>
+	<string name="tip_default_nodata">没有数据</string>
+	<string name="tip_default_error">错误</string>
+</resources>

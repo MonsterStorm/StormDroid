@@ -1,8 +1,8 @@
 package com.cst.stormdroid.net;
 
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Future;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -48,7 +48,7 @@ public class SDThreadPool {
 	 * public constructor
 	 */
 	public SDThreadPool() {
-		workQueue = new ArrayBlockingQueue<Runnable>(20);
+		workQueue = new LinkedBlockingQueue<Runnable>();
 		threadFactory = new ThreadFactory() {
 			private final AtomicInteger mCount = new AtomicInteger(1);
 

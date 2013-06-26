@@ -20,6 +20,8 @@ public class BaseFragment extends Fragment {
 	//private activity
 	protected Activity mActivity;
 	
+	
+	// *********************************Lifecycle functions*********************************
 	@Override
 	public void onAttach(Activity activity) {
 		SDLog.d(TAG, "onAttach");
