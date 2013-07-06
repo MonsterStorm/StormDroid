@@ -1,15 +1,15 @@
 package com.cst.example;
 
-import com.cst.stormdroid.activity.BaseActivity;
-
 import android.os.Bundle;
+
+import com.cst.stormdroid.activity.SDBaseActivity;
 
 /**
  * simple example activity, only show the function of some life cycle functions.
  * @author MonsterStorm
  *
  */
-public class MyExampleActivity extends BaseActivity{
+public class MyExampleActivity extends SDBaseActivity{
 
 	/**
 	 * called when the life cycle start, should init ui there

@@ -4,25 +4,27 @@ import java.util.List;
 
 import android.content.Context;
 /**
+ * Cause Android has a default @ArrayAdapter, so this is deprecated, just use the @SDBaseArrayAdapter.
  * base adapter with list values, T is subclass of BaseViewHolder and V is the item type of List
  * @author MonsterStorm
  * @version 1.0
  */
+@Deprecated
 public abstract class SDBaseListAdapter<T extends BaseViewHolder, V> extends SDBaseAdapter<T>{
 	/**
 	 * list that store values
 	 */
-	protected List<V> items;
+	protected List<V> mItems;
 	
 	public SDBaseListAdapter(Context ctx, List<V> items){
 		super(ctx);
-		this.items = items;
+		this.mItems = items;
 	}
 	
 	@Override
 	public int getCount() {
-		if(items != null){
-			return items.size();
+		if(mItems != null){
+			return mItems.size();
 		} else {
 			return 0;
 		}
@@ -30,28 +32,28 @@ public abstract class SDBaseListAdapter<T extends BaseViewHolder, V> extends SDB
 	
 	@Override
 	public V getItem(int position) {
-		if(items != null){
-			return items.get(position);
+		if(mItems != null){
+			return mItems.get(position);
 		} else {
 			return null;
 		}
 	}
 	
 	/**
-	 * set items to list
-	 * @param items
+	 * set mItems to list
+	 * @param mItems
 	 */
 	protected void setItems(List<V> v){
-		this.items = v;
+		this.mItems = v;
 	}
 	
 	/**
-	 * add items to list
-	 * @param items
+	 * add mItems to list
+	 * @param mItems
 	 */
 	protected void addItems(List<V> v){
-		if(this.items != null){
-			this.items.addAll(v);
+		if(this.mItems != null){
+			this.mItems.addAll(v);
 		}
 	}
 	
@@ -60,8 +62,8 @@ public abstract class SDBaseListAdapter<T extends BaseViewHolder, V> extends SDB
 	 * @param v
 	 */
 	protected void addItem(V v){
-		if(items != null && v != null){
-			items.add(v);
+		if(mItems != null && v != null){
+			mItems.add(v);
 		}
 	}
 	
@@ -70,8 +72,8 @@ public abstract class SDBaseListAdapter<T extends BaseViewHolder, V> extends SDB
 	 * @param v
 	 */
 	protected void setItem(V v, int pos){
-		if(items != null && v != null && pos < items.size()){
-			items.set(pos, v);
+		if(mItems != null && v != null && pos < mItems.size()){
+			mItems.set(pos, v);
 		}
 	}
 }

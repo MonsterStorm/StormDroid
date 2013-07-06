@@ -1,10 +1,12 @@
 package com.cst.stormdroid.adapter;
 
+import java.util.List;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 
 import com.cst.stormdroid.adapter.interfaces.IBaseAdapter;
 /**
@@ -12,11 +14,18 @@ import com.cst.stormdroid.adapter.interfaces.IBaseAdapter;
  * @author MonsterStorm
  * @version 1.0
  */
-public abstract class SDBaseAdapter<T extends BaseViewHolder> extends BaseAdapter implements IBaseAdapter<T>{
+public abstract class SDBaseArrayAdapter<T extends BaseViewHolder, V> extends ArrayAdapter<V> implements IBaseAdapter<T>{
 	protected Context mCtx;
 	protected LayoutInflater mInflator;
 	
-	public SDBaseAdapter(Context ctx){
+	public SDBaseArrayAdapter(Context ctx){
+		super(ctx, 0);
+		this.mCtx = ctx;
+		this.mInflator = LayoutInflater.from(ctx);
+	}
+	
+	public SDBaseArrayAdapter(Context ctx, List<V> list){
+		super(ctx, 0, list);
 		this.mCtx = ctx;
 		this.mInflator = LayoutInflater.from(ctx);
 	}
@@ -24,6 +33,11 @@ public abstract class SDBaseAdapter<T extends BaseViewHolder> extends BaseAdapte
 	@Override
 	public long getItemId(int position) {
 		return position;
+	}
+	
+	@Override
+	public V getItem(int position) {
+		return super.getItem(position);
 	}
 	
 	@Override

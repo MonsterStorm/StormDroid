@@ -14,22 +14,22 @@ import android.widget.RelativeLayout;
  */
 public abstract class InterceptRelativeLayout extends RelativeLayout {
 	// reference of
-	private Activity activity;
+	private Activity mActivity;
 
 	public InterceptRelativeLayout(Context context) {
 		super(context);
-		this.activity = (Activity) context;
+		this.mActivity = (Activity) context;
 	}
 
 	public InterceptRelativeLayout(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		this.activity = (Activity) context;
+		this.mActivity = (Activity) context;
 	}
 
 	@TargetApi(11)
 	public InterceptRelativeLayout(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-		this.activity = (Activity) context;
+		this.mActivity = (Activity) context;
 	}
 
 	@Override

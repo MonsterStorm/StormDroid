@@ -30,7 +30,7 @@ public class SDThreadPool {
 	/**
 	 * Blocking Queue, only create thread when core thread are occupied and blocking queue is full
 	 */
-	private BlockingQueue<Runnable> workQueue;
+	private BlockingQueue<Runnable> mHandler;
 
 	/**
 	 * Thread Pool
@@ -42,14 +42,14 @@ public class SDThreadPool {
 	/**
 	 * Thread Factory
 	 */
-	private ThreadFactory threadFactory;
+	private ThreadFactory mThreadFactory;
 
 	/**
 	 * public constructor
 	 */
 	public SDThreadPool() {
-		workQueue = new LinkedBlockingQueue<Runnable>();
-		threadFactory = new ThreadFactory() {
+		mHandler = new LinkedBlockingQueue<Runnable>();
+		mThreadFactory = new ThreadFactory() {
 			private final AtomicInteger mCount = new AtomicInteger(1);
 
 			@Override
@@ -57,9 +57,9 @@ public class SDThreadPool {
 				return new Thread(r, "SDThreadPool thread:" + mCount.getAndIncrement());
 			}
 		};
-		mExecutor = new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.SECONDS, workQueue, threadFactory);
+		mExecutor = new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.SECONDS, mHandler, mThreadFactory);
 		//fixed count excutor
-//		mExecutorService = Executors.newFixedThreadPool(CORE_POOL_SIZE, threadFactory);
+//		mExecutorService = Executors.newFixedThreadPool(CORE_POOL_SIZE, mThreadFactory);
 	}
 	
 	/**

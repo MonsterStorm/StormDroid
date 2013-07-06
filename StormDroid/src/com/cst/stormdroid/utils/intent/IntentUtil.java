@@ -2,6 +2,7 @@ package com.cst.stormdroid.utils.intent;
 
 import java.io.Serializable;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Parcelable;
 
@@ -28,6 +29,15 @@ public class IntentUtil {
 	 */
 	public static class Builder {
 		private final Intent intent;
+		
+		/**
+		 * Create builder with from and to
+		 * @param from
+		 * @param to
+		 */
+		public Builder(final Context from, final Class<?> to){
+			intent = new Intent(from, to);
+		}
 
 		/**
 		 * Create builder with suffix

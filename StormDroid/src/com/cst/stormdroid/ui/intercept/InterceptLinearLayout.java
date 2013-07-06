@@ -14,22 +14,22 @@ import android.widget.LinearLayout;
  */
 public abstract class InterceptLinearLayout extends LinearLayout {
 	// reference of
-	private Activity activity;
+	private Activity mActivity;
 
 	public InterceptLinearLayout(Context context) {
 		super(context);
-		this.activity = (Activity) context;
+		this.mActivity = (Activity) context;
 	}
 
 	public InterceptLinearLayout(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		this.activity = (Activity) context;
+		this.mActivity = (Activity) context;
 	}
 
 	@TargetApi(11)
 	public InterceptLinearLayout(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-		this.activity = (Activity) context;
+		this.mActivity = (Activity) context;
 	}
 
 	@Override

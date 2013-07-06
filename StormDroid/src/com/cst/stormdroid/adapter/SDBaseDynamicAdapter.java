@@ -16,16 +16,16 @@ import com.cst.stormdroid.adapter.interfaces.IBaseAdapter;
  * @version 1.0
  */
 public abstract class SDBaseDynamicAdapter<T extends BaseViewHolder> extends BaseAdapter implements IBaseAdapter<T>{
-	protected AbsListView lv;
-	protected Context ctx;
-	protected LayoutInflater inflator;
+	protected AbsListView mLv;
+	protected Context mCtx;
+	protected LayoutInflater mInflator;
 	//is load first time
-	protected boolean isFirstTime = true;
+	protected boolean mIsFirstTime = true;
 	
-	public SDBaseDynamicAdapter(Context ctx, AbsListView lv){
-		this.ctx = ctx;
-		this.inflator = LayoutInflater.from(ctx);
-		this.lv = lv;
+	public SDBaseDynamicAdapter(Context ctx, AbsListView mLv){
+		this.mCtx = ctx;
+		this.mInflator = LayoutInflater.from(ctx);
+		this.mLv = mLv;
 		bindScrollListener();
 	}
 	
@@ -33,15 +33,15 @@ public abstract class SDBaseDynamicAdapter<T extends BaseViewHolder> extends Bas
 	 * bind scroll listener for listview
 	 */
 	protected void bindScrollListener(){
-		this.lv.setOnScrollListener(new OnScrollListener() {
+		this.mLv.setOnScrollListener(new OnScrollListener() {
 			@Override
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
 				if(scrollState == OnScrollListener.SCROLL_STATE_IDLE){
 					//change is first time
-					isFirstTime = false;
+					mIsFirstTime = false;
 					
 					int headCount = 0;
-					if(lv instanceof ListView) headCount = ((ListView)lv).getHeaderViewsCount();
+					if(mLv instanceof ListView) headCount = ((ListView)mLv).getHeaderViewsCount();
 					int first = view.getFirstVisiblePosition() - headCount;
 					int last = view.getLastVisiblePosition() - headCount;
 					for(int i = first; i <= last; i++){
@@ -58,13 +58,13 @@ public abstract class SDBaseDynamicAdapter<T extends BaseViewHolder> extends Bas
 	
 	@Override
 	public void notifyDataSetChanged() {
-		isFirstTime = true;
+		mIsFirstTime = true;
 		super.notifyDataSetChanged();
 	}
 	
 	@Override
 	public void notifyDataSetInvalidated() {
-		isFirstTime = true;
+		mIsFirstTime = true;
 		super.notifyDataSetInvalidated();
 	}
 	
@@ -86,7 +86,7 @@ public abstract class SDBaseDynamicAdapter<T extends BaseViewHolder> extends Bas
 		bindViewActions(position, viewHolder);
 		
 		//set view content
-		if(isFirstTime){
+		if(mIsFirstTime){
 			setViewContentWhenGetView(position, viewHolder);
 		}
 		
