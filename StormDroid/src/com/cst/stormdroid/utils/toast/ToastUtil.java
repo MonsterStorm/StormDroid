@@ -1,9 +1,10 @@
 package com.cst.stormdroid.utils.toast;
 
 import android.content.Context;
+import android.os.Looper;
 import android.widget.Toast;
 
-import com.cst.stormdroid.app.SDApplication;
+import com.cst.stormdroid.app.SDBaseApplication;
 import com.cst.stormdroid.utils.Config;
 import com.cst.stormdroid.utils.string.StringUtil;
 
@@ -50,7 +51,7 @@ public class ToastUtil {
 	 */
 	public static void showToast(final int resId, final boolean isLong){
 		setLength(isLong);
-		showToast(SDApplication.getInstance(), SDApplication.getInstance().getText(resId));
+		showToast(SDBaseApplication.getInstance(), SDBaseApplication.getInstance().getText(resId));
 	}
 	
 	/**
@@ -60,7 +61,7 @@ public class ToastUtil {
 	 */
 	public static void debugToast(final int resId){
 		if(Config.mDebug){
-			showToast(SDApplication.getInstance(), SDApplication.getInstance().getText(resId));
+			showToast(SDBaseApplication.getInstance(), SDBaseApplication.getInstance().getText(resId));
 		}
 	}
 	
@@ -71,7 +72,7 @@ public class ToastUtil {
 	 */
 	public static void debugToast(final CharSequence msg){
 		if(Config.mDebug){
-			showToast(SDApplication.getInstance(), msg);
+			showToast(SDBaseApplication.getInstance(), msg);
 		}
 	}
 	
@@ -81,6 +82,7 @@ public class ToastUtil {
 	 * @param msg
 	 */
 	private static void showToast(final Context context, final CharSequence msg){
+		Looper.prepare();//to ensure handler is binded to Main Thread
 		if(StringUtil.isEmpty(msg)) return;
 		if(mToast == null){
 			mToast = Toast.makeText(context, msg, mLength);
@@ -99,6 +101,7 @@ public class ToastUtil {
 			}
 			mOneTime = mTwoTime;
 		}
+		Looper.loop();
 	}
 	
 	/**

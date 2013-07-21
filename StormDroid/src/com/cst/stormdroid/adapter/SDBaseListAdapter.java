@@ -43,7 +43,7 @@ public abstract class SDBaseListAdapter<T extends BaseViewHolder, V> extends SDB
 	 * set mItems to list
 	 * @param mItems
 	 */
-	protected void setItems(List<V> v){
+	public void setItems(List<V> v){
 		this.mItems = v;
 	}
 	
@@ -51,7 +51,7 @@ public abstract class SDBaseListAdapter<T extends BaseViewHolder, V> extends SDB
 	 * add mItems to list
 	 * @param mItems
 	 */
-	protected void addItems(List<V> v){
+	public void addItems(List<V> v){
 		if(this.mItems != null){
 			this.mItems.addAll(v);
 		}
@@ -61,7 +61,7 @@ public abstract class SDBaseListAdapter<T extends BaseViewHolder, V> extends SDB
 	 * add an item to list
 	 * @param v
 	 */
-	protected void addItem(V v){
+	public void addItem(V v){
 		if(mItems != null && v != null){
 			mItems.add(v);
 		}
@@ -71,7 +71,7 @@ public abstract class SDBaseListAdapter<T extends BaseViewHolder, V> extends SDB
 	 * set an item to a position
 	 * @param v
 	 */
-	protected void setItem(V v, int pos){
+	public void setItem(V v, int pos){
 		if(mItems != null && v != null && pos < mItems.size()){
 			mItems.set(pos, v);
 		}

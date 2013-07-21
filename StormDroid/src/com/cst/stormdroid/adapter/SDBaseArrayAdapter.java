@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 
 import com.cst.stormdroid.adapter.interfaces.IBaseAdapter;
 /**
- * base adapter
+ * base adapter, where T is the view holder, and V is the item of list
  * @author MonsterStorm
  * @version 1.0
  */

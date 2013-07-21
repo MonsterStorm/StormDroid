@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 import android.widget.ImageView;
 
 import com.cst.stormdroid.R;
-import com.cst.stormdroid.app.SDApplication;
+import com.cst.stormdroid.app.SDBaseApplication;
 import com.cst.stormdroid.image.ImageRequest;
 import com.cst.stormdroid.image.interfaces.ImageProcessor;
 import com.cst.stormdroid.image.interfaces.ImageRequestCallback;
@@ -172,7 +172,7 @@ public class AsyncImageView extends ImageView implements ImageRequestCallback {
 				reload();
 			} else {
 				// check the cache
-				mBitmap = SDApplication.getInstance().getImageCache().getImageByUrl(mUrl);
+				mBitmap = SDBaseApplication.getInstance().getImageCache().getImageByUrl(mUrl);
 				if (mBitmap != null) {
 					setImageBitmap(mBitmap);
 					return;
@@ -220,7 +220,7 @@ public class AsyncImageView extends ImageView implements ImageRequestCallback {
 		if (mImageRequest == null && StringUtil.isValid(mUrl)) {
 			mBitmap = null;
 			if (!force) {
-				mBitmap = SDApplication.getInstance().getImageCache().getImageByUrl(mUrl);
+				mBitmap = SDBaseApplication.getInstance().getImageCache().getImageByUrl(mUrl);
 			}
 
 			if (mBitmap != null) {

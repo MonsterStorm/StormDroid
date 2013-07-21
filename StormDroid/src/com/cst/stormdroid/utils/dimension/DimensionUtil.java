@@ -1,6 +1,6 @@
 package com.cst.stormdroid.utils.dimension;
 
-import com.cst.stormdroid.app.SDApplication;
+import com.cst.stormdroid.app.SDBaseApplication;
 
 /**
  * util for dimension process such as dp to xp and xp to dp convert
@@ -13,7 +13,7 @@ public class DimensionUtil {
 	 * convert dp to px
 	 */
 	public static int dpToPx(int dp) {
-		final float SCALE = SDApplication.getInstance().getResources().getDisplayMetrics().density;
+		final float SCALE = SDBaseApplication.getInstance().getResources().getDisplayMetrics().density;
 		int px = (int) (dp * SCALE + 0.5f);
 		return px;
 	}
@@ -22,7 +22,7 @@ public class DimensionUtil {
 	 * convert px to dp
 	 */
 	public static float pxToDp(int px) {
-		final float SCALE = SDApplication.getInstance().getResources().getDisplayMetrics().density;
+		final float SCALE = SDBaseApplication.getInstance().getResources().getDisplayMetrics().density;
 		float dp = px / SCALE;
 		return dp;
 	}

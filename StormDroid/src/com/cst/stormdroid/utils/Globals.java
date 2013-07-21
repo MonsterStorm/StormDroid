@@ -1,6 +1,6 @@
 package com.cst.stormdroid.utils;
 
-import com.cst.stormdroid.app.SDApplication;
+import com.cst.stormdroid.app.SDBaseApplication;
 
 import android.os.Environment;
 
@@ -25,7 +25,7 @@ public class Globals {
 	 * init globals variable
 	 * @param app
 	 */
-	public static void init(SDApplication app){
+	public static void init(SDBaseApplication app){
 		if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)){
 			Globals.SD_BASE_PATH = Environment.getExternalStorageDirectory().toString();
 			Globals.HAS_SDCARD = true;

@@ -23,7 +23,7 @@ public class SDLog {
     /**
      * current logs level, set to SD_LOG_LEVEL_NONE when application is release
      */
-    public static final SDLogLevel SD_LOG_LEVEL = SDLogLevel.SD_LOG_LEVEL_NONE;
+    public static SDLogLevel SD_LOG_LEVEL = SDLogLevel.SD_LOG_LEVEL_NONE;
     
     /**
      * is debug logs enabled
@@ -44,6 +44,14 @@ public class SDLog {
      * is error logs enabled
      */
     public static final boolean SD_ERROR_LOGS_ENABLED = SD_WARNING_LOGS_ENABLED || (SD_LOG_LEVEL == SDLogLevel.SD_LOG_LEVEL_ERROR);
+    
+    /**
+     * set log level
+     * @param level
+     */
+    public static void setLogLevel(SDLogLevel level){
+    	SD_LOG_LEVEL = level;
+    }
     
     /**
      * log info

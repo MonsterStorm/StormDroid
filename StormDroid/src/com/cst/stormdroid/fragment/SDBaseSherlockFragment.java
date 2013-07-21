@@ -1,25 +1,23 @@
 package com.cst.stormdroid.fragment;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.actionbarsherlock.app.SherlockFragment;
 import com.cst.stormdroid.fragment.interfaces.SDBaseCallback;
 import com.cst.stormdroid.utils.log.SDLog;
 
 /**
- * base class for all fragments
+ * base fragment extends sherlock fragment, to support actionbar in android 2.x
  * @author MonsterStorm
  * @version 1.0
  */
-@TargetApi(11)
-public class SDBaseFragment extends Fragment {
+public class SDBaseSherlockFragment extends SherlockFragment {
 	// tag for log
-	private static final String TAG = SDBaseFragment.class.getSimpleName();
+	private static final String TAG = SDBaseSherlockFragment.class.getSimpleName();
 
 	/**
 	 * callback for communication with activity and other fragments

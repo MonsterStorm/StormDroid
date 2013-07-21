@@ -17,7 +17,7 @@ public class StringUtil {
 	 * @return
 	 */
 	public static boolean isEmpty(final CharSequence str){
-		return str != null && !str.equals("");
+		return str == null || str.equals("");
 	}
 	
 	/**

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cst.stormdroid.adapter.SDBaseArrayAdapter;
 import com.cst.stormdroid.fragment.interfaces.SDBaseCallback;
 import com.cst.stormdroid.utils.log.SDLog;
 /**
@@ -14,9 +15,14 @@ import com.cst.stormdroid.utils.log.SDLog;
  * @author MonsterStorm
  * @version 1.0
  */
-public class SDBaseSupportListFragment extends ListFragment {
+public class SDBaseSupportListFragment<T extends SDBaseArrayAdapter> extends ListFragment {
 	//tag for log
 	private static final String TAG = SDBaseSupportListFragment.class.getSimpleName();
+	
+	/**
+	 * adapter
+	 */
+	protected T mAdapter;
 	
 	/**
 	 * callback for communication with activity and other fragments

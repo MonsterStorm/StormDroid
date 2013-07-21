@@ -14,7 +14,7 @@ public class Config {
 	/**
 	 * whether is in debug mode
 	 */
-	public static final boolean mDebug;
+	public static boolean mDebug;
 	
 	/**
 	 * whether handler crash by CrashHandler
@@ -23,5 +23,23 @@ public class Config {
 	
 	static {
 		mDebug = SDLog.SD_LOG_LEVEL == SDLogLevel.SD_LOG_LEVEL_DEBUG;
+	}
+	
+	/**
+	 * http params encode
+	 */
+	public static final String PARAMS_ENCODE = "UTF-8";
+	
+	/**
+	 * enable or disable debug
+	 * @param enable
+	 */
+	public static void enableDebug(boolean enable){
+		mDebug = enable;
+		if(enable){
+			SDLog.setLogLevel(SDLogLevel.SD_LOG_LEVEL_DEBUG);
+		} else {
+			SDLog.setLogLevel(SDLogLevel.SD_LOG_LEVEL_NONE);
+		}
 	}
 }

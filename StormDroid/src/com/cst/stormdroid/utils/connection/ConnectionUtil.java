@@ -5,7 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import com.cst.stormdroid.R;
-import com.cst.stormdroid.app.SDApplication;
+import com.cst.stormdroid.app.SDBaseApplication;
 import com.cst.stormdroid.utils.toast.ToastUtil;
 
 /**
@@ -20,7 +20,7 @@ public class ConnectionUtil {
 	private static final Context mCtx;
 	
 	static {
-		mCtx = SDApplication.getInstance();
+		mCtx = SDBaseApplication.getInstance();
 	}
 	
 	/**

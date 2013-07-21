@@ -13,7 +13,7 @@ import android.os.Message;
 import android.os.Process;
 import android.util.DisplayMetrics;
 
-import com.cst.stormdroid.app.SDApplication;
+import com.cst.stormdroid.app.SDBaseApplication;
 import com.cst.stormdroid.image.interfaces.ImageLoaderCallback;
 import com.cst.stormdroid.image.interfaces.ImageProcessor;
 import com.cst.stormdroid.net.SDThreadPool;
@@ -52,10 +52,10 @@ public class ImageLoader {
 
 	public ImageLoader(Context context) {
 		if (mImageCache == null) {
-			mImageCache = SDApplication.getInstance().getImageCache();
+			mImageCache = SDBaseApplication.getInstance().getImageCache();
 		}
 		if (mThreadPool == null) {
-			mThreadPool = SDApplication.getInstance().getThreadPool();
+			mThreadPool = SDBaseApplication.getInstance().getThreadPool();
 		}
 		if (mDefaultOptions == null) {
 			mDefaultOptions = new BitmapFactory.Options();

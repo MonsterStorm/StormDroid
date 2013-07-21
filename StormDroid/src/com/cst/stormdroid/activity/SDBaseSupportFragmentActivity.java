@@ -1,53 +1,66 @@
 package com.cst.stormdroid.activity;
 
-import java.io.Serializable;
-
-import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.os.Parcelable;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 
+import com.cst.stormdroid.R;
 import com.cst.stormdroid.utils.Constants;
 import com.cst.stormdroid.utils.log.SDLog;
 
 /**
- * base activity for all activities
+ * base fragment activity for all fragment activities
  * @author MonsterStorm
  * @version 1.0
  */
-public class SDBaseActivity extends Activity {
-	private static final String TAG = SDBaseActivity.class.getSimpleName();
+public class SDBaseSupportFragmentActivity extends FragmentActivity {
+	private static final String TAG = SDBaseSupportFragmentActivity.class.getSimpleName();
 
-	//handler
+	/**
+	 * handler
+	 */
 	public Handler mHandler = new Handler();
-	
+
+	/**
+	 * default Enter animation
+	 */
+	private int mEnterAnimDefault = R.anim.anim_slide_right_in;
+	/**
+	 * default exit animation
+	 */
+	private int mExitAnimDefault = R.anim.anim_slide_left_out;
+
 	// base handle message
-	public Handler mTipHandler = new Handler(){
+	public Handler mTipHandler = new Handler() {
 		public void handleMessage(Message msg) {
-			SDBaseActivity.this.handleMessage(msg);
+			SDBaseSupportFragmentActivity.this.handleMessage(msg);
 		};
 	};
+
+	// base post handler for post some runnable
+	public Handler mPostHandler = new Handler();
 
 	// toast a message
 	protected void tip(int msgType) {
 		mTipHandler.sendEmptyMessage(msgType);
 	}
-	
+
 	/**
 	 * handler message
 	 * @param msg
 	 */
-	protected void handleMessage(Message msg){
-		switch(msg.what){
-		case Constants.MESSAGE_COMMON_NODATA :
+	protected void handleMessage(Message msg) {
+		switch (msg.what) {
+		case Constants.MESSAGE_COMMON_NODATA:
 			break;
-		case Constants.MESSAGE_COMMON_ERROR : 
+		case Constants.MESSAGE_COMMON_ERROR:
 			break;
 		case Constants.MESSAGE_HTTP_START:
 			break;
@@ -55,92 +68,71 @@ public class SDBaseActivity extends Activity {
 			break;
 		case Constants.MESSAGE_HTTP_ERROR:
 			break;
-		default :
+		default:
 			break;
 		}
 	}
-	
+
 	/**
-	 * get int extra with default -1
-	 * @param fieldName
-	 * @return
+	 * start Activity With Animation
+	 * @param intent
+	 * @param enterAnim
+	 * @param exitAnim
 	 */
-	protected int getIntExtra(final String name) {
-		return getIntent().getIntExtra(name, -1);
+	public void startActivityWithAnim(Intent intent) {
+		super.startActivity(intent);
+		this.overridePendingTransition(mEnterAnimDefault, mExitAnimDefault);
 	}
 
 	/**
-	 * get String exta
-	 * @param name
-	 * @return
+	 * start Activity With Animation
+	 * @param intent
+	 * @param enterAnim
+	 * @param exitAnim
 	 */
-	protected String getStringExtra(final String name) {
-		return getIntent().getStringExtra(name);
+	public void startActivityWithAnim(Intent intent, final int enterAnim, final int exitAnim) {
+		super.startActivity(intent);
+		this.overridePendingTransition(enterAnim, exitAnim);
 	}
 
 	/**
-	 * Get string array extra
-	 * @param name
-	 * @return string array
+	 * set override pending anim
+	 * @param enterAnim
+	 * @param exitAnim
 	 */
-	protected String[] getStringArrayExtra(final String name) {
-		return getIntent().getStringArrayExtra(name);
+	public void setDefaultPendingAnim(final int enterAnim, final int exitAnim) {
+		this.mEnterAnimDefault = enterAnim;
+		this.mExitAnimDefault = exitAnim;
 	}
-
-	/**
-	 * get Serializable extra
-	 * @param name
-	 * @return
-	 */
-	@SuppressWarnings("unchecked")
-	protected <V extends Serializable> V getSerializableExtra(final String name) {
-		return (V) getIntent().getSerializableExtra(name);
-	}
-
-	/**
-	 * get Parcelable extra
-	 * @param name
-	 * @return
-	 */
-	@SuppressWarnings("unchecked")
-	protected <V extends Parcelable> V getParcelableExtra(final String name) {
-		return (V) getIntent().getParcelableExtra(name);
-	}
-	
-	
-	/**
-	 * redirect to other activity
-	 * @param activity
-	 */
-	protected void redirctTo(Activity activity){
-	}
-	
 
 	/**
 	 * register Broadcast Receiver
 	 */
-	protected void registerBroadcastReceiver(){};
+	protected void registerBroadcastReceiver() {
+	};
+
 	/**
 	 * unregister Broadcast Receiver
 	 */
-	protected void unregisterBroadcastReceiver(){};
-	
+	protected void unregisterBroadcastReceiver() {
+	};
+
 	/**
 	 * show softkeyboard
 	 */
-	protected void showSoftKeyboard(){
+	protected void showSoftKeyboard() {
 		InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 	}
-	
+
 	/**
 	 * hide softKeyboard
 	 */
-	protected void hideSoftKeyboard(){
+	protected void hideSoftKeyboard() {
 		Window window = getWindow();
-		if(window != null){
+		if (window != null) {
 			View view = window.getDecorView();
-			if(view != null){
+			if (view != null) {
 				IBinder binder = view.getWindowToken();
 				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 				if (imm.isActive()) {
@@ -149,6 +141,7 @@ public class SDBaseActivity extends Activity {
 			}
 		}
 	}
+
 	// *********************************Lifecycle functions*********************************
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -172,7 +165,7 @@ public class SDBaseActivity extends Activity {
 	protected void onResume() {
 		SDLog.d(TAG, "onResume");
 		super.onResume();
-		//register broadcast receiver
+		// register broadcast receiver
 		registerBroadcastReceiver();
 	}
 
@@ -180,7 +173,7 @@ public class SDBaseActivity extends Activity {
 	protected void onPause() {
 		SDLog.d(TAG, "onPause");
 		super.onPause();
-		//unregister broadcast receiver
+		// unregister broadcast receiver
 		unregisterBroadcastReceiver();
 	}
 
