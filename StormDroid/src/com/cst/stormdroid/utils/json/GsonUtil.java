@@ -2,10 +2,10 @@ package com.cst.stormdroid.utils.json;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
@@ -16,7 +16,7 @@ import com.google.gson.reflect.TypeToken;
  * @version 1.0
  */
 public class GsonUtil {
-
+	
 	/**
 	 * to json
 	 * @param obj

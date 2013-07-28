@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- style for base loading layout -->
+    <declare-styleable name="BaseLoadingLayout">
+        <attr name="showLoadingIndicator" format="boolean"/>
+        <attr name="emptyLayout" format="reference"/>
+        <attr name="loadingIndicatorLayout" format="reference"/>
+    </declare-styleable>
+
+</resources>

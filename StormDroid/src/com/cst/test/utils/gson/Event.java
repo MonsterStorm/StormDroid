@@ -2,6 +2,7 @@ package com.cst.test.utils.gson;
 
 import com.cst.test.utils.gson.Field.Field_Address;
 import com.cst.test.utils.gson.Field.Field_Contact;
+import com.cst.test.utils.gson.Field.Field_Desc;
 import com.cst.test.utils.gson.Field.Field_End;
 import com.cst.test.utils.gson.Field.Field_Photos;
 import com.cst.test.utils.gson.Field.Field_Poster;
@@ -13,9 +14,8 @@ import com.cst.test.utils.gson.Field.Field_Type;
  * @author MonsterStorm
  * 
  */
-public class Event {
-	private Node node;// 内容（Node） 内容（Node）。
-	private String field_desc;// 活动详情（field_desc） 活动详情。
+public class Event extends Node {
+	private Field_Desc field_desc;// 活动详情（field_desc） 活动详情。
 	private Field_Type field_type;// 活动类型（field_type） 活动类型。值为“1”，“2”，“3”…
 	private Field_Poster field_poster;// 活动海报（field_poster） 活动海报。
 	private Field_Photos field_photos;// 活动照片（field_photos） 活动宣传照片。
@@ -24,19 +24,11 @@ public class Event {
 	private Field_Address field_address;// 活动地址（field_ address） 活动结束时间。
 	private Field_Contact field_contact;// 报名方式（field_contact） 活动报名方式。
 
-	public Node getNode() {
-		return node;
-	}
-
-	public void setNode(Node node) {
-		this.node = node;
-	}
-
-	public String getField_desc() {
+	public Field_Desc getField_desc() {
 		return field_desc;
 	}
 
-	public void setField_desc(String field_desc) {
+	public void setField_desc(Field_Desc field_desc) {
 		this.field_desc = field_desc;
 	}
 

@@ -1,5 +1,5 @@
 <resources>
 	
     <string name="info_network_not_connected">The network is not connected!</string>
-
+	<string name="info_ui_loadinglayout_empty">Oops, no data found!</string>
 </resources>

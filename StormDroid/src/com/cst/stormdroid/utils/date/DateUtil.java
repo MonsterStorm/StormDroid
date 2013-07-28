@@ -46,7 +46,31 @@ public class DateUtil {
 	 */
 	public static final long ONE_DAY = 24 * ONE_HOUR;
 	
+	/**
+	 * format a string, return default formatted string (yyyy-MM-dd HH:mm:ss)
+	 * @param date
+	 * @return
+	 */
+	public static String format(final Long date){
+		if(date != null){
+			return format(new Date(date), DATE_FORMAT_DEFAULT);
+		} else {
+			return getCurrent();
+		}
+	}
 	
+	/**
+	 * format a string, return default formatted string (yyyy-MM-dd HH:mm:ss)
+	 * @param date
+	 * @return
+	 */
+	public static String format(final Long date, final String format){
+		if(date != null){
+			return format(new Date(date), format);
+		} else {
+			return getCurrent(format);
+		}
+	}
 	
 	/**
 	 * format a string, return default formatted string (yyyy-MM-dd HH:mm:ss)
@@ -54,7 +78,11 @@ public class DateUtil {
 	 * @return
 	 */
 	public static String format(final Date date){
-		return format(date, DATE_FORMAT_DEFAULT);
+		if(date != null){
+			return format(date, DATE_FORMAT_DEFAULT);
+		} else {
+			return getCurrent();
+		}
 	}
 	
 	/**
@@ -64,13 +92,17 @@ public class DateUtil {
 	 * @return
 	 */
 	public static String format(final Date date, final String format){
-		SimpleDateFormat sdf = new SimpleDateFormat(format);
-		try{
-			return sdf.format(date);
-		} catch (Exception e){
-			e.printStackTrace();
+		if(date != null){
+			SimpleDateFormat sdf = new SimpleDateFormat(format);
+			try{
+				return sdf.format(date);
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+			return date.toString();
+		} else {
+			return getCurrent(format);
 		}
-		return date.toString();
 	}
 	
 	/**

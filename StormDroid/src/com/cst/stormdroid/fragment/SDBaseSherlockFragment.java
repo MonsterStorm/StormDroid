@@ -39,7 +39,7 @@ public class SDBaseSherlockFragment extends SherlockFragment {
 	/**
 	 * init callback
 	 */
-	protected void initCallback(Activity activity) {
+	private void initCallback(Activity activity) {
 		try {
 			mCallback = (SDBaseCallback) activity;
 		} catch (ClassCastException e) {
