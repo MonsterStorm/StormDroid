@@ -28,22 +28,22 @@ public class SDLog {
     /**
      * is debug logs enabled
      */
-    public static final boolean SD_DEBUG_LOGS_ENABLED = (SD_LOG_LEVEL == SDLogLevel.SD_LOG_LEVEL_DEBUG);
+    public static boolean SD_DEBUG_LOGS_ENABLED = (SD_LOG_LEVEL == SDLogLevel.SD_LOG_LEVEL_DEBUG);
     
     /**
      * is info logs enabled
      */
-    public static final boolean SD_INFO_LOGS_ENABLED = SD_DEBUG_LOGS_ENABLED || (SD_LOG_LEVEL == SDLogLevel.SD_LOG_LEVEL_INFO);
+    public static boolean SD_INFO_LOGS_ENABLED = SD_DEBUG_LOGS_ENABLED || (SD_LOG_LEVEL == SDLogLevel.SD_LOG_LEVEL_INFO);
     
     /**
      * is warning logs enabled
      */
-    public static final boolean SD_WARNING_LOGS_ENABLED = SD_INFO_LOGS_ENABLED || (SD_LOG_LEVEL == SDLogLevel.SD_LOG_LEVEL_WARNING);
+    public static boolean SD_WARNING_LOGS_ENABLED = SD_INFO_LOGS_ENABLED || (SD_LOG_LEVEL == SDLogLevel.SD_LOG_LEVEL_WARNING);
 	
     /**
      * is error logs enabled
      */
-    public static final boolean SD_ERROR_LOGS_ENABLED = SD_WARNING_LOGS_ENABLED || (SD_LOG_LEVEL == SDLogLevel.SD_LOG_LEVEL_ERROR);
+    public static boolean SD_ERROR_LOGS_ENABLED = SD_WARNING_LOGS_ENABLED || (SD_LOG_LEVEL == SDLogLevel.SD_LOG_LEVEL_ERROR);
     
     /**
      * set log level
@@ -51,6 +51,10 @@ public class SDLog {
      */
     public static void setLogLevel(SDLogLevel level){
     	SD_LOG_LEVEL = level;
+    	SD_DEBUG_LOGS_ENABLED = (SD_LOG_LEVEL == SDLogLevel.SD_LOG_LEVEL_DEBUG);
+    	SD_INFO_LOGS_ENABLED = SD_DEBUG_LOGS_ENABLED || (SD_LOG_LEVEL == SDLogLevel.SD_LOG_LEVEL_INFO);
+    	SD_WARNING_LOGS_ENABLED = SD_INFO_LOGS_ENABLED || (SD_LOG_LEVEL == SDLogLevel.SD_LOG_LEVEL_WARNING);
+    	SD_ERROR_LOGS_ENABLED = SD_WARNING_LOGS_ENABLED || (SD_LOG_LEVEL == SDLogLevel.SD_LOG_LEVEL_ERROR);
     }
     
     /**

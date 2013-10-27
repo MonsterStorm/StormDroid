@@ -9,26 +9,26 @@ public interface SDOnHttpCallback {
 	 * http start
 	 * @param url
 	 */
-	public void onHttpStart(String url);
+	public void onHttpStart(Integer requestCode, String url);
 	
 	/**
 	 * http error
 	 * @param url
 	 * @param serverResponse
 	 */
-	public void onHttpError(String url, String serverResponse);
+	public void onHttpError(Integer requestCode, String url, String serverResponse);
 	
 	/**
 	 * http finish
 	 * @param url
 	 * @param serverResponse
 	 */
-	public void onHttpFinish(String url, String serverResponse);
+	public void onHttpFinish(Integer requestCode, String url, String serverResponse);
 	
 	/**
 	 * http progress update
 	 * @param url
 	 * @param progress
 	 */
-	public void onHttpProgress(String url, int progress);
+	public void onHttpProgress(Integer requestCode, String url, int progress);
 }

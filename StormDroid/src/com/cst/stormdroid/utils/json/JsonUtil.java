@@ -53,7 +53,7 @@ public class JsonUtil {
 	}
 	
 	/**
-	 * user reflect to build object from a json string
+	 * use reflect to build object from a json string
 	 * @param json
 	 * @param clazz
 	 * @return

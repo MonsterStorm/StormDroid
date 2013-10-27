@@ -71,9 +71,96 @@ public class SDHttpRunnable implements Runnable {
 	private ResponseType mResponseType;
 	// result of http execution
 	private String mResult = null;
+	// request code
+	private Integer mRequestCode;
 	// context
 	private Context mContext;
 
+	//************************************Builder Class start************************************
+	/**
+	 * SD Http Runnable builder
+	 * @author MonsterStorm
+	 */
+	public static class Builder {
+		private SDHttpRunnable mRunnable;
+		
+		public Builder(){
+			mRunnable = new SDHttpRunnable();
+		}
+		
+		public Builder(Context ctx){
+			mRunnable = new SDHttpRunnable();
+			mRunnable.mContext = ctx;
+		}
+		
+		public Builder(String baseUrl, Context ctx){
+			mRunnable = new SDHttpRunnable();
+			mRunnable.mBaseUrl = baseUrl;
+			mRunnable.mContext = ctx;
+		}
+		
+		public Builder(String baseUrl, Object params, Context ctx){
+			mRunnable = new SDHttpRunnable(baseUrl, params, ctx);
+		}
+		
+		public Builder setContext(Context ctx){
+			mRunnable.mContext = ctx;
+			return this;
+		}
+		
+		public Builder setBaseUrl(String baseUrl){
+			mRunnable.mBaseUrl = baseUrl;
+			return this;
+		}
+		
+		public Builder setParams(Object params){
+			mRunnable.mParamsEntity = params;
+			return this;
+		}
+		
+		public Builder setOnHttpCallback(SDOnHttpCallback callback){
+			mRunnable.mOnHttpCallback = callback;
+			return this;
+		}
+		
+		public Builder setHttpMethod(HttpMethod method){
+			mRunnable.mMethod = method;
+			return this;
+		}
+		
+		public Builder setRequestParamType(RequestParamType requestParamType){
+			mRunnable.mRequestParamType = requestParamType;
+			return this;
+		}
+		
+		public Builder setResponseType(ResponseType responseType){
+			mRunnable.mResponseType = responseType;
+			return this;
+		}
+		
+		public Builder setRequestCode(Integer requestCode){
+			mRunnable.mRequestCode = requestCode;
+			return this;
+		}
+		
+		public SDHttpRunnable create(){
+			return mRunnable;
+		}
+	}
+	//************************************Builder class end************************************
+	
+	//private method only used by Builder
+	private SDHttpRunnable(){
+		this.mBaseUrl = null;
+		this.mParamsEntity = null;
+		this.mOnHttpCallback = null;
+		this.mMethod = HttpMethod.POST;
+		this.mRequestParamType = RequestParamType.DEFAULT;
+		this.mRequestCode = null;
+		this.mResponseType = ResponseType.DEFAULT;
+		this.mContext = null;
+	}
+	
 	/**
 	 * create a runnable object to handler some action
 	 * @param baseUrl
@@ -195,7 +282,7 @@ public class SDHttpRunnable implements Runnable {
 				} else {
 					SDLog.i(TAG, "Http Failed : " + baseUrl + "," + count);
 					if (this.mOnHttpCallback != null) {
-						this.mOnHttpCallback.onHttpError(mBaseUrl, null);
+						this.mOnHttpCallback.onHttpError(mRequestCode, mBaseUrl, null);
 					}
 				}
 			}
@@ -218,7 +305,7 @@ public class SDHttpRunnable implements Runnable {
 		HttpGet getMethod = createHttpGet(baseUrl, params);
 
 		if (this.mOnHttpCallback != null)
-			this.mOnHttpCallback.onHttpStart(mBaseUrl);
+			this.mOnHttpCallback.onHttpStart(mRequestCode, mBaseUrl);
 		try {
 			// execute get method
 			HttpResponse response = httpClient.execute(getMethod);
@@ -256,7 +343,7 @@ public class SDHttpRunnable implements Runnable {
 		HttpPost postMethod = createHttpPost(baseUrl, params);
 
 		if (this.mOnHttpCallback != null)
-			this.mOnHttpCallback.onHttpStart(mBaseUrl);
+			this.mOnHttpCallback.onHttpStart(mRequestCode, mBaseUrl);
 
 		try {
 			// execute the post method
@@ -365,12 +452,12 @@ public class SDHttpRunnable implements Runnable {
 			request.abort();
 			this.mResult = String.valueOf(response.getStatusLine().getStatusCode()) + ":" + EntityUtils.toString(response.getEntity(), Config.PARAMS_ENCODE);
 			if (this.mOnHttpCallback != null){
-				this.mOnHttpCallback.onHttpError(mBaseUrl, mResult);
+				this.mOnHttpCallback.onHttpError(mRequestCode, mBaseUrl, mResult);
 			}
 		} else {
 			this.mResult = EntityUtils.toString(response.getEntity(), Config.PARAMS_ENCODE);
 			if (this.mOnHttpCallback != null) {
-				this.mOnHttpCallback.onHttpFinish(mBaseUrl, mResult);
+				this.mOnHttpCallback.onHttpFinish(mRequestCode, mBaseUrl, mResult);
 			}
 		}
 	}

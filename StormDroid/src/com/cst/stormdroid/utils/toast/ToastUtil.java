@@ -82,7 +82,7 @@ public class ToastUtil {
 	 * @param msg
 	 */
 	private static void showToast(final Context context, final CharSequence msg){
-		Looper.prepare();//to ensure handler is binded to Main Thread
+//		Looper.prepare();//to ensure handler is binded to Main Thread
 		if(StringUtil.isEmpty(msg)) return;
 		if(mToast == null){
 			mToast = Toast.makeText(context, msg, mLength);
@@ -101,7 +101,7 @@ public class ToastUtil {
 			}
 			mOneTime = mTwoTime;
 		}
-		Looper.loop();
+//		Looper.loop();
 	}
 	
 	/**
