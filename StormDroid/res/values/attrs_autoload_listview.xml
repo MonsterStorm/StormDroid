@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- pullable view base -->
+    <declare-styleable name="PullableViewBase">
+        <attr name="bgView" format="reference"/><!-- 背景图，可下拉-->
+        <attr name="friction" format="float"/><!-- 拉动的距离 -->
+    </declare-styleable>
+    
+    <!-- declared attributes of UI, use the same name as the AutoLoadListView class -->
+    <declare-styleable name="AutoLoadListView">
+        <attr name="autoLoadHeaderLayout" format="reference"/><!-- 头部加载布局，需要有基本元素 -->
+        <attr name="autoLoadFooterLayout" format="reference"/><!-- 底部加载布局 -->
+        <attr name="enableHeader" format="boolean"/><!-- 头部加载是否启用 -->
+        <attr name="enableFooter" format="boolean"/><!-- 底部加载是否启用 -->
+        <attr name="headerText" format="reference"/><!-- Header的Text提示信息 -->
+        <attr name="footerText" format="reference"/><!-- Footer的Text提示信息 -->
+        <attr name="simpleHeader" format="boolean"/><!-- 简单头部，只显示加载进度，无其他任何文字提示，不加载的时候不显示 -->
+        <attr name="simpleFooter" format="boolean"/><!-- 简单头部，只显示加载进度，无其他任何文字提示，不加载的时候不显示 -->
+        <attr name="enableBothLoad" format="boolean"/><!-- 是否允许上下同时加载 -->
+        <attr name="headClickLoad" format="boolean"/><!-- 是否允许头部点击加载 -->
+        <attr name="footClickLoad" format="boolean"/><!-- 是否允许底部点击加载 -->
+        <attr name="headPullLoad" format="boolean"/><!-- 是否允许头部下拉加载 -->
+        <attr name="footPullLoad" format="boolean"/><!-- 是否允许底部上拉加载 -->
+        <attr name="headAutoLoad" format="boolean"/><!-- 是否允许头部滚动到顶部后自动加载 -->
+        <attr name="footAutoLoad" format="boolean"/><!-- 是否允许底部滚动到底部后自动加载 -->
+        <attr name="dummyHeaderHeight" format="dimension"/><!-- 虚假头部高度，用于布局美观 -->
+        <attr name="dummyFooterHeight" format="dimension"/><!-- 虚假底部高度，用于布局美观 -->
+        <attr name="dummyHeaderAtTop" format="boolean"/><!-- 是否将虚头部放在最上面 -->
+        <attr name="dummyFooterAtBottom" format="boolean"/><!-- 是否将虚底部放在最下面 -->
+        <attr name="showFooterDivider" format="boolean"/><!-- 是否显示底部的divider，仅对默认有效 -->
+        <attr name="contentBackground" format="reference"/><!-- 内容区域的背景 -->
+    </declare-styleable>
+    
+    <string name="info_autoload_listview_header_default">点击加载更多</string>
+    <string name="info_autoload_listview_footer_default">点击加载更多</string>
+</resources>

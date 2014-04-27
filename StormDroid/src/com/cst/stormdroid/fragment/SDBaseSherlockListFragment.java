@@ -16,6 +16,7 @@ import com.cst.stormdroid.utils.log.SDLog;
  * @author MonsterStorm
  * @version 1.0
  */
+@SuppressWarnings("rawtypes")
 public class SDBaseSherlockListFragment<T extends SDBaseArrayAdapter> extends SherlockListFragment {
 	// tag for log
 	private static final String TAG = SDBaseSherlockListFragment.class.getSimpleName();

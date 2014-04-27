@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- declared attributes of UI, use the same name as the MessageEditorUI class -->
+    <declare-styleable name="NavBar">
+        <attr name="layout" format="reference"/><!-- 布局 -->
+        <attr name="btnLeftVisible" format="boolean"/><!-- 左边是否可用 -->
+        <attr name="btnRightVisible" format="boolean"/><!-- 左边是否可用 -->
+        
+        <attr name="txtRightVisible" format="boolean"/><!-- 右边文字是否可见 -->
+        <attr name="txtRight" format="reference"/><!-- 右边文字 -->
+        <attr name="srcLeft" format="reference" /><!-- 左边按钮图标 -->
+        <attr name="srcRight" format="reference" /><!-- 右边按钮图标 -->
+        <attr name="bgLeft" format="reference" /><!-- 左边按钮的背景 -->
+        <attr name="bgRight" format="reference" /><!-- 右边按钮的背景 -->
+        <attr name="centerImg" format="reference"/><!-- 中间图片 -->
+        <attr name="centerTxt" format="reference"/><!-- 中间文字 -->
+        <attr name="centerImgVisible" format="boolean"/><!-- 中间图片是否可用，不可用则不显示 -->
+        <attr name="centerTxtVisible" format="boolean"/><!-- 中间文字是否可用，不可用则不显示-->
+        <attr name="centerTxtStyle" format="reference"/><!-- 中间文字的样式 -->
+        
+        <attr name="btnMoreVisible" format="boolean"/><!-- 中间更多按钮是否可用 -->
+        <attr name="srcMore" format="reference"/><!-- 中间更多的图标 -->
+    </declare-styleable>
+
+</resources>
