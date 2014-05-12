@@ -63,7 +63,7 @@ public class SDLog {
      * @param msg
      */
 	public static void i(final String tag, final String msg){
-		if(SD_INFO_LOGS_ENABLED){
+		if(SD_INFO_LOGS_ENABLED && msg != null){
 			Log.i(tag, msg);
 		}
 	}
@@ -74,7 +74,7 @@ public class SDLog {
 	 * @param msg
 	 */
 	public static void w(final String tag, final String msg){
-		if(SD_WARNING_LOGS_ENABLED){
+		if(SD_WARNING_LOGS_ENABLED && msg != null){
 			Log.w(tag, msg);
 		}
 	}
@@ -85,7 +85,7 @@ public class SDLog {
 	 * @param msg
 	 */
 	public static void d(final String tag, final String msg){
-		if(SD_DEBUG_LOGS_ENABLED){
+		if(SD_DEBUG_LOGS_ENABLED && msg != null){
 			Log.d(tag, msg);
 		}
 	}
@@ -96,7 +96,7 @@ public class SDLog {
 	 * @param msg
 	 */
 	public static void e(final String tag, final String msg){
-		if(SD_ERROR_LOGS_ENABLED){
+		if(SD_ERROR_LOGS_ENABLED && msg != null){
 			Log.e(tag, msg);
 		}
 	}
@@ -108,7 +108,7 @@ public class SDLog {
 	 * @param exception
 	 */
 	public static void e(final String tag, final String msg, final Throwable exception){
-		if(SD_ERROR_LOGS_ENABLED){
+		if(SD_ERROR_LOGS_ENABLED && msg != null){
 			Log.e(tag, msg, exception);
 		}
 	}

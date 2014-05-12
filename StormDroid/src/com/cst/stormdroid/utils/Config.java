@@ -42,4 +42,12 @@ public class Config {
 			SDLog.setLogLevel(SDLogLevel.SD_LOG_LEVEL_NONE);
 		}
 	}
+	
+	/**
+	 * is enable debug
+	 * @return
+	 */
+	public static boolean isDebug(){
+		return mDebug;
+	}
 }
