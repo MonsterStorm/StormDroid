@@ -59,6 +59,22 @@ public class DimensionUtil {
 		}
 		return -1;
 	}
+	
+	/**
+	 * get density
+	 */
+	public static float getDensity(Context context){
+		return context.getResources().getDisplayMetrics().density;
+	}
+	
+	/**
+	 * get density dpi
+	 * @param context
+	 * @return
+	 */
+	public static int getDensityDpi(Context context){
+		return context.getResources().getDisplayMetrics().densityDpi;
+	}
 
 	/**
 	 * dip to pixel
